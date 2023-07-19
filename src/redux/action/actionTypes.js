@@ -1,0 +1,5 @@
+export const GET_ALL_IMAGE='GET_ALL_IMAGE';
+export const SEARCHED_IMAGE='SEARCHED_IMAGE';
+export const SEARCH_ITEM='SEARCH_ITEM';
+export const PAGE_NO='PAGE_NO';
+export const EMPTY_IMAGES='EMPTY_IMAGES';
