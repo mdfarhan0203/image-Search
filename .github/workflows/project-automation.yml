@@ -1,0 +1,18 @@
+name: Project Automation
+
+on:
+  pull_request:
+    types: [opened, closed]
+
+jobs:
+  move-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move linked issues
+        uses: monry/actions-move-linked-issues@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          project-name: "Your Project Name"
+          pr-state: ${{ github.event.action }} # opened / closed
+          column-opened: "PR Review"
+          column-closed: "Done"
