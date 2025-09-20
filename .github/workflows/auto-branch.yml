@@ -4,6 +4,9 @@ on:
   issues:
     types: [opened]
 
+permissions:
+  contents: write   # ✅ allow creating branches
+
 jobs:
   create-branch:
     runs-on: ubuntu-latest
