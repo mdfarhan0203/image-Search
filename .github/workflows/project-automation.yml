@@ -5,14 +5,21 @@ on:
     types: [opened, closed]
 
 jobs:
-  move-issue:
+  move-card:
     runs-on: ubuntu-latest
     steps:
-      - name: Move linked issues
-        uses: monry/actions-move-linked-issues@v1
+      - name: Move card when PR opened
+        if: github.event.action == 'opened'
+        uses: alex-page/github-project-automation-plus@v0.9.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          project-name: "Your Project Name"
-          pr-state: ${{ github.event.action }} # opened / closed
-          column-opened: "PR Review"
-          column-closed: "Done"
+          project: "Your Project Name"
+          column: "PR Review"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Move card when PR closed/merged
+        if: github.event.action == 'closed'
+        uses: alex-page/github-project-automation-plus@v0.9.0
+        with:
+          project: "Your Project Name"
+          column: "Done"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
