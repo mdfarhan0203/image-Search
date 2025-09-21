@@ -1,0 +1,29 @@
+name: Auto Create Branch
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write   # ✅ allow creating branches
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract issue info
+        id: extract
+        run: |
+          title="${{ github.event.issue.title }}"
+          number="${{ github.event.issue.number }}"
+          # lowercase, replace spaces with dashes
+          slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+          echo "slug=$slug" >> $GITHUB_OUTPUT
+          echo "number=$number" >> $GITHUB_OUTPUT
+
+      - name: Create branch
+        uses: peterjgrainger/action-create-branch@v3.0.0
+        with:
+          branch: dcr-${{ steps.extract.outputs.number }}-${{ steps.extract.outputs.slug }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
