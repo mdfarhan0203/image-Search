@@ -18,17 +18,18 @@
     right: 0;
     top: 0;
     left: 0;
-    background-color: #F4F2DE;
+    background-color: #80A1BA;
 }
 
 .search-bar-input {
     height: 2rem;
-    width: 30rem;
-    border: 2px solid black;
+    width: 80%;
+    border: 1px #696FC7;
     border-radius: 10px;
-    /* margin: 2rem 4rem; */
-    margin: 2rem 4rem;
+    margin: 1rem 2rem;
+    padding-left: 1rem;
 }
+
 
 
 /* --------------------------IMAGE LIST------------------------ */
@@ -46,6 +47,7 @@ li {
 
 img {
     object-fit: cover;
+    border-radius: 5px;
 }
 input {
     line-height: 4em; 
